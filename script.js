@@ -8,23 +8,38 @@ const popupScreen = document.querySelector(".fullscreen-container");
     closePopUpElement.addEventListener('click', ()=>{
         popupScreen.setAttribute('style',"display: none")
     })
+//create book prototype constructor
+function Book(title, author, pages, read, id){
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
+    this.id = id;
+}
+//create form functionality = get the user's input and create an object;
+let bookId = 0;
+let myLibrary = [];
+const formElement = document.querySelector('#book-form');
+formElement.addEventListener('submit', (e)=>{
+    e.preventDefault();
+    const title = document.querySelector('#book-name').value;
+    const author = document.querySelector('#book-author').value;
+    const pages = document.querySelector('#pages').value;
+    const read = document.querySelector('#read').value;
+    bookId += 1;
+    const bookObject = new Book(title, author, pages, read, bookId)
+    
+})
+//add book to library and create a book card 
+// function addBookToLibrary(){
+//     myLibrary.push(bookObject)
+//     }
 
-//create form functionality = get the user's input;
 
 
-// let myLibrary = [];
 
-// function Book(title, author, pages, read, info){
-//     this.title = title;
-//     this.author = author;
-//     this.pages = pages;
-//     this.read = read;
-// }
 // Book.prototype.info = function(){
 //     let readResult = read ? "read alredy" : "not read yet"
 //     return(`${title} by ${author}, ${pages} pages, ${readResult}`)
 // }
 
-// function addBookToLibrary(){
-// myLibrary.push
-// }
