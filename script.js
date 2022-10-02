@@ -25,7 +25,7 @@ formElement.addEventListener('submit', (e)=>{
     const title = document.querySelector('#book-name').value;
     const author = document.querySelector('#book-author').value;
     const pages = document.querySelector('#pages').value;
-    const read = document.querySelector('#read').value;
+    const read = document.querySelector('#read').checked;
     bookId += 1;
     const bookObject = new Book(title, author, pages, read, bookId);
     addBookToLibrary(bookObject)
@@ -49,9 +49,11 @@ function createBookElements(bookObject){
         authDiv.textContent = bookObject.author
         pageDiv.textContent = bookObject.pages;
         removeBtn.textContent = "Remove book";
-        if (bookObject.read == "true") {
+        if (bookObject.read == true) {
+            readBtn.setAttribute('data-read', true)
             readBtn.textContent = "Read"
         }else{
+            readBtn.setAttribute('data-read', false)
             readBtn.textContent = "Not Read"
         }
         bodyContainer.appendChild(bookCard);
@@ -64,6 +66,23 @@ function createBookElements(bookObject){
             //remove from DOM tree
             let currentBookCard = e.target.parentElement
             bodyContainer.removeChild(currentBookCard)
+        })
+
+        //change readButton state
+        readBtn.addEventListener('click', (e)=>{
+            let currentState = e.target.getAttribute('data-read');
+            let currentId = e.target.parentElement.getAttribute('data-id');
+            const objectWithTargetId = myLibrary.find(book => book.id == currentId);
+            if(currentState == "true"){
+                readBtn.textContent = "Not read";
+                readBtn.dataset.read = false
+                objectWithTargetId.read = false;
+
+            }else{
+                readBtn.textContent = "Read";
+                readBtn.dataset.read = true
+                objectWithTargetId.read = true;
+            }
         })
 }
 
