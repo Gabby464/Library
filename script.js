@@ -27,13 +27,17 @@ formElement.addEventListener('submit', (e)=>{
     const pages = document.querySelector('#pages').value;
     const read = document.querySelector('#read').value;
     bookId += 1;
-    const bookObject = new Book(title, author, pages, read, bookId)
+    const bookObject = new Book(title, author, pages, read, bookId);
+    addBookToLibrary(bookObject)
+    
     
 })
 //add book to library and create a book card 
-// function addBookToLibrary(){
-//     myLibrary.push(bookObject)
-//     }
+function addBookToLibrary(bookObject){
+    formElement.reset();
+    popupScreen.setAttribute('style',"display: none");
+    myLibrary.push(bookObject);
+}
 
 
 
