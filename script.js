@@ -55,6 +55,16 @@ function createBookElements(bookObject){
             readBtn.textContent = "Not Read"
         }
         bodyContainer.appendChild(bookCard);
+
+        //add delete-book functionality to the code
+        removeBtn.addEventListener('click', (e)=>{
+            let currentId = e.target.getAttribute('data-id');
+            //remove from array memory
+            myLibrary.splice(myLibrary.findIndex(book => book.id == currentId), 1);
+            //remove from DOM tree
+            let currentBookCard = e.target.parentElement
+            bodyContainer.removeChild(currentBookCard)
+        })
 }
 
 //add book to library 
