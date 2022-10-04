@@ -46,8 +46,8 @@ function createBookElements(bookObject){
         bookCard.append(titleDiv, authDiv, pageDiv, removeBtn, readBtn);
         bookCard.setAttribute('data-id', bookObject.id);
         titleDiv.textContent = bookObject.title;
-        authDiv.textContent = bookObject.author
-        pageDiv.textContent = bookObject.pages;
+        authDiv.textContent = `By ${bookObject.author}`
+        pageDiv.textContent = `${bookObject.pages} pages`;
         removeBtn.textContent = "Remove book";
         if (bookObject.read == true) {
             readBtn.setAttribute('data-read', true)
